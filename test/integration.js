@@ -19,7 +19,7 @@ test('setup', function (t) {
     t.error(er)
     cmdShim(testShbang + '.js', testShbang, function (er) {
       t.error(er)
-      t.done()
+      t.end()
     })
   })
 })
@@ -28,16 +28,16 @@ test('async-read-no-shbang', function (t) {
   t.plan(2)
   readCmdShim(testShimCmd, function (er, dest) {
     t.error(er)
-    t.is(dest, '..\\basic.js')
-    t.done()
+    t.is(dest, '..\\integration.js')
+    t.end()
   })
 })
 
 test('sync-read-no-shbang', function (t) {
   t.plan(1)
   var dest = readCmdShim.sync(testShimCmd)
-  t.is(dest, '..\\basic.js')
-  t.done()
+  t.is(dest, '..\\integration.js')
+  t.end()
 })
 
 test('async-read-shbang', function (t) {
@@ -45,7 +45,7 @@ test('async-read-shbang', function (t) {
   readCmdShim(testShbangCmd, function (er, dest) {
     t.error(er)
     t.is(dest, 'test-shbang.js')
-    t.done()
+    t.end()
   })
 })
 
@@ -53,23 +53,23 @@ test('sync-read-shbang', function (t) {
   t.plan(1)
   var dest = readCmdShim.sync(testShbangCmd)
   t.is(dest, 'test-shbang.js')
-  t.done()
+  t.end()
 })
 
 test('async-read-no-shbang-cygwin', function (t) {
   t.plan(2)
   readCmdShim(testShim, function (er, dest) {
     t.error(er)
-    t.is(dest, '../basic.js')
-    t.done()
+    t.is(dest, '../integration.js')
+    t.end()
   })
 })
 
 test('sync-read-no-shbang-cygwin', function (t) {
   t.plan(1)
   var dest = readCmdShim.sync(testShim)
-  t.is(dest, '../basic.js')
-  t.done()
+  t.is(dest, '../integration.js')
+  t.end()
 })
 
 test('async-read-shbang-cygwin', function (t) {
@@ -77,7 +77,7 @@ test('async-read-shbang-cygwin', function (t) {
   readCmdShim(testShbang, function (er, dest) {
     t.error(er)
     t.is(dest, 'test-shbang.js')
-    t.done()
+    t.end()
   })
 })
 
@@ -85,7 +85,7 @@ test('sync-read-shbang-cygwin', function (t) {
   t.plan(1)
   var dest = readCmdShim.sync(testShbang)
   t.is(dest, 'test-shbang.js')
-  t.done()
+  t.end()
 })
 
 test('async-read-dir', function (t) {
@@ -93,14 +93,14 @@ test('async-read-dir', function (t) {
   readCmdShim(workDir, function (er) {
     t.ok(er)
     t.is(er.code, 'EISDIR', "cmd-shims can't be directories")
-    t.done()
+    t.end()
   })
 })
 
 test('sync-read-dir', function (t) {
   t.plan(1)
   t.throws(function () { readCmdShim.sync(workDir) }, "cmd-shims can't be directories")
-  t.done()
+  t.end()
 })
 
 test('async-read-not-there', function (t) {
@@ -108,14 +108,14 @@ test('async-read-not-there', function (t) {
   readCmdShim('/path/to/nowhere', function (er, dest) {
     t.ok(er, 'missing files throw errors')
     t.is(er.code, 'ENOENT', "cmd-shim file doesn't exist")
-    t.done()
+    t.end()
   })
 })
 
 test('sync-read-not-there', function (t) {
   t.plan(1)
   t.throws(function () { readCmdShim.sync('/path/to/nowhere') }, "cmd-shim file doesn't exist")
-  t.done()
+  t.end()
 })
 
 test('async-read-not-shim', function (t) {
@@ -123,17 +123,17 @@ test('async-read-not-shim', function (t) {
   readCmdShim(__filename, function (er, dest) {
     t.ok(er)
     t.is(er.code, 'ENOTASHIM', 'shim file specified is not a shim')
-    t.done()
+    t.end()
   })
 })
 
 test('sync-read-not-shim', function (t) {
   t.plan(1)
   t.throws(function () { readCmdShim.sync(__filename) }, 'shim file specified is not a shim')
-  t.done()
+  t.end()
 })
 
 test('cleanup', function (t) {
   rimraf.sync(workDir)
-  t.done()
+  t.end()
 })
