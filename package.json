@@ -14,7 +14,7 @@
   },
   "scripts": {
     "pretest": "standard",
-    "test": "tap test/*.js"
+    "test": "tap test/*.js --100"
   },
   "repository": {
     "type": "git",
