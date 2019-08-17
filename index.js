@@ -4,13 +4,20 @@ var fs = require('graceful-fs')
 function extractPath (path, cmdshimContents) {
   if (/[.]cmd$/.test(path)) {
     return extractPathFromCmd(cmdshimContents)
-  } else {
-    return extractPathFromCygwin(cmdshimContents)
+  } else if(/[.]ps1$/.test(path)) {
+    return extractPathFromPwsh(cmdshimContents)
+  }else{
+     return extractPathFromCygwin(cmdshimContents)
   }
 }
 
 function extractPathFromCmd (cmdshimContents) {
   var matches = cmdshimContents.match(/"%(?:~dp0|dp0%)\\([^"]+?)"\s+%[*]/)
+  return matches && matches[1]
+}
+
+function extractPathFromPwsh (cmdshimContents) {
+  var matches = cmdshimContents.match(/"[$]basedir[/](?!node)([^"]+?)*"/)
   return matches && matches[1]
 }
 
