@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/npm/read-cmd-shim/issues"
   },
-  "homepage": "https://github.com/npm/read-cmd-shim#readme"
+  "homepage": "https://github.com/npm/read-cmd-shim#readme",
+  "files": [
+    "index.js"
+  ]
 }
