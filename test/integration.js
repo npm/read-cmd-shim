@@ -8,8 +8,10 @@ var readCmdShim = require('../index.js')
 var workDir = path.join(__dirname, path.basename(__filename, '.js'))
 var testShbang = path.join(workDir, 'test-shbang')
 var testShbangCmd = testShbang + '.cmd'
+var testShbangPowershell = testShbang + '.ps1'
 var testShim = path.join(workDir, 'test')
 var testShimCmd = testShim + '.cmd'
+var testShimPowershell = testShim + '.ps1'
 
 test('setup', function (t) {
   rimraf.sync(workDir)
@@ -84,6 +86,38 @@ test('async-read-shbang-cygwin', function (t) {
 test('sync-read-shbang-cygwin', function (t) {
   t.plan(1)
   var dest = readCmdShim.sync(testShbang)
+  t.is(dest, 'test-shbang.js')
+  t.done()
+})
+
+test('async-read-no-shbang-powershell', function (t) {
+  t.plan(2)
+  readCmdShim(testShimPowershell, function (er, dest) {
+    t.error(er)
+    t.is(dest, '../integration.js')
+    t.done()
+  })
+})
+
+test('sync-read-no-shbang-powershell', function (t) {
+  t.plan(1)
+  var dest = readCmdShim.sync(testShimPowershell)
+  t.is(dest, '../integration.js')
+  t.done()
+})
+
+test('async-read-shbang-powershell', function (t) {
+  t.plan(2)
+  readCmdShim(testShbangPowershell, function (er, dest) {
+    t.error(er)
+    t.is(dest, 'test-shbang.js')
+    t.done()
+  })
+})
+
+test('sync-read-shbang-powershell', function (t) {
+  t.plan(1)
+  var dest = readCmdShim.sync(testShbangPowershell)
   t.is(dest, 'test-shbang.js')
   t.done()
 })
