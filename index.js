@@ -42,14 +42,29 @@ function notaShim (path, er) {
   return er
 }
 
+function isDir (path, er) {
+  er.code = 'EISDIR'
+  er.message = "'" + path + "' is a directory"
+  return er
+}
+
 var readCmdShim = module.exports = function (path, cb) {
   var er = new Error()
   Error.captureStackTrace(er, readCmdShim)
   fs.readFile(path, function (readFileEr, contents) {
-    if (readFileEr) return cb(wrapError(readFileEr, er))
-    var destination = extractPath(path, contents.toString())
-    if (destination) return cb(null, destination)
-    return cb(notaShim(path, er))
+    if (readFileEr) {
+      // fs.readFile will return EINVAL rather than EISDIR
+      // if path is a directory.
+      if (readFileEr.code !== 'EINVAL') return cb(wrapError(readFileEr, er))
+      fs.stat(path, function (statEr, stats) {
+        if (!statEr && stats.isDirectory()) return cb(isDir(path, er))
+        return cb(wrapError(readFileEr, er))
+      })
+    } else {
+      var destination = extractPath(path, contents.toString())
+      if (destination) return cb(null, destination)
+      return cb(notaShim(path, er))
+    }
   })
 }
 
