@@ -29,6 +29,7 @@ function extractPathFromCygwin (cmdshimContents) {
 function wrapError (thrown, newError) {
   newError.message = thrown.message
   newError.code = thrown.code
+  newError.path = thrown.path
   return newError
 }
 
@@ -43,6 +44,8 @@ function notaShim (path, er) {
 }
 
 var readCmdShim = module.exports = function (path, cb) {
+  // create a new error to capture the stack trace from this point,
+  // instead of getting some opaque stack into node's internals
   var er = new Error()
   Error.captureStackTrace(er, readCmdShim)
   fs.readFile(path, function (readFileEr, contents) {
