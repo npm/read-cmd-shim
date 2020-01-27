@@ -1,19 +1,19 @@
 'use strict'
-var path = require('path')
-var fs = require('graceful-fs')
-var test = require('tap').test
-var rimraf = require('rimraf')
-var cmdShim = require('cmd-shim')
-var readCmdShim = require('../index.js')
-var workDir = path.join(__dirname, path.basename(__filename, '.js'))
-var testShbang = path.join(workDir, 'test-shbang')
-var testShbangCmd = testShbang + '.cmd'
-var testShbangPowershell = testShbang + '.ps1'
-var testShim = path.join(workDir, 'test')
-var testShimCmd = testShim + '.cmd'
-var testShimPowershell = testShim + '.ps1'
+const {join, basename} = require('path')
+const fs = require('graceful-fs')
+const test = require('tap').test
+const rimraf = require('rimraf')
+const cmdShim = require('cmd-shim')
+const readCmdShim = require('../index.js')
+const workDir = join(__dirname, basename(__filename, '.js'))
+const testShbang = join(workDir, 'test-shbang')
+const testShbangCmd = testShbang + '.cmd'
+const testShbangPowershell = testShbang + '.ps1'
+const testShim = join(workDir, 'test')
+const testShimCmd = testShim + '.cmd'
+const testShimPowershell = testShim + '.ps1'
 
-test('setup', function (t) {
+test('setup', t => {
   rimraf.sync(workDir)
   fs.mkdirSync(workDir)
   fs.writeFileSync(testShbang + '.js', '#!/usr/bin/env node\ntrue')
@@ -23,148 +23,58 @@ test('setup', function (t) {
   ])
 })
 
-test('async-read-no-shbang', function (t) {
-  t.plan(2)
-  readCmdShim(testShimCmd, function (er, dest) {
-    t.error(er)
-    t.is(dest, '..\\integration.js')
-    t.done()
-  })
-})
+test('async-read-no-shebang', async t =>
+  t.equal(await readCmdShim(testShimCmd), '..\\integration.js'))
 
-test('sync-read-no-shbang', function (t) {
-  t.plan(1)
-  var dest = readCmdShim.sync(testShimCmd)
-  t.is(dest, '..\\integration.js')
-  t.done()
-})
+test('sync-read-no-shbang', async t =>
+  t.equal(readCmdShim.sync(testShimCmd), '..\\integration.js'))
 
-test('async-read-shbang', function (t) {
-  t.plan(2)
-  readCmdShim(testShbangCmd, function (er, dest) {
-    t.error(er)
-    t.is(dest, 'test-shbang.js')
-    t.done()
-  })
-})
+test('async-read-shbang', async t =>
+  t.equal(await readCmdShim(testShbangCmd), 'test-shbang.js'))
 
-test('sync-read-shbang', function (t) {
-  t.plan(1)
-  var dest = readCmdShim.sync(testShbangCmd)
-  t.is(dest, 'test-shbang.js')
-  t.done()
-})
+test('sync-read-shbang', async t =>
+  t.equal(readCmdShim.sync(testShbangCmd), 'test-shbang.js'))
 
-test('async-read-no-shbang-cygwin', function (t) {
-  t.plan(2)
-  readCmdShim(testShim, function (er, dest) {
-    t.error(er)
-    t.is(dest, '../integration.js')
-    t.done()
-  })
-})
+test('async-read-no-shbang-cygwin', async t =>
+  t.equal(await readCmdShim(testShim), '../integration.js'))
 
-test('sync-read-no-shbang-cygwin', function (t) {
-  t.plan(1)
-  var dest = readCmdShim.sync(testShim)
-  t.is(dest, '../integration.js')
-  t.done()
-})
+test('sync-read-no-shbang-cygwin', async t =>
+  t.equal(readCmdShim.sync(testShim), '../integration.js'))
 
-test('async-read-shbang-cygwin', function (t) {
-  t.plan(2)
-  readCmdShim(testShbang, function (er, dest) {
-    t.error(er)
-    t.is(dest, 'test-shbang.js')
-    t.done()
-  })
-})
+test('async-read-shbang-cygwin', async t =>
+  t.equal(await readCmdShim(testShbang), 'test-shbang.js'))
 
-test('sync-read-shbang-cygwin', function (t) {
-  t.plan(1)
-  var dest = readCmdShim.sync(testShbang)
-  t.is(dest, 'test-shbang.js')
-  t.done()
-})
+test('sync-read-shbang-cygwin', async t =>
+  t.equal(readCmdShim.sync(testShbang), 'test-shbang.js'))
 
-test('async-read-no-shbang-powershell', function (t) {
-  t.plan(2)
-  readCmdShim(testShimPowershell, function (er, dest) {
-    t.error(er)
-    t.is(dest, '../integration.js')
-    t.done()
-  })
-})
+test('async-read-no-shbang-powershell', async t =>
+  t.equal(await readCmdShim(testShimPowershell), '../integration.js'))
 
-test('sync-read-no-shbang-powershell', function (t) {
-  t.plan(1)
-  var dest = readCmdShim.sync(testShimPowershell)
-  t.is(dest, '../integration.js')
-  t.done()
-})
+test('sync-read-no-shbang-powershell', async t =>
+  t.equal(readCmdShim.sync(testShimPowershell), '../integration.js'))
 
-test('async-read-shbang-powershell', function (t) {
-  t.plan(2)
-  readCmdShim(testShbangPowershell, function (er, dest) {
-    t.error(er)
-    t.is(dest, 'test-shbang.js')
-    t.done()
-  })
-})
+test('async-read-shbang-powershell', async t =>
+  t.equal(await readCmdShim(testShbangPowershell), 'test-shbang.js'))
 
-test('sync-read-shbang-powershell', function (t) {
-  t.plan(1)
-  var dest = readCmdShim.sync(testShbangPowershell)
-  t.is(dest, 'test-shbang.js')
-  t.done()
-})
+test('sync-read-shbang-powershell', async t =>
+  t.equal(readCmdShim.sync(testShbangPowershell), 'test-shbang.js'))
 
-test('async-read-dir', function (t) {
-  t.plan(2)
-  readCmdShim(workDir, function (er) {
-    t.ok(er)
-    t.is(er.code, 'EISDIR', "cmd-shims can't be directories")
-    t.done()
-  })
-})
+test('async-read-dir', t =>
+  t.rejects(readCmdShim(workDir), { code: 'EISDIR' }))
 
-test('sync-read-dir', function (t) {
-  t.plan(1)
-  t.throws(function () { readCmdShim.sync(workDir) }, "cmd-shims can't be directories")
-  t.done()
-})
+test('sync-read-dir', async t =>
+  t.throws(() => readCmdShim.sync(workDir), { code: 'EISDIR' }))
 
-test('async-read-not-there', function (t) {
-  t.plan(2)
-  readCmdShim('/path/to/nowhere', function (er, dest) {
-    t.ok(er, 'missing files throw errors')
-    t.is(er.code, 'ENOENT', "cmd-shim file doesn't exist")
-    t.done()
-  })
-})
+test('async-read-not-there', t =>
+  t.rejects(readCmdShim('/path/to/nowhere'), {code: 'ENOENT'}))
 
-test('sync-read-not-there', function (t) {
-  t.plan(1)
-  t.throws(function () { readCmdShim.sync('/path/to/nowhere') }, "cmd-shim file doesn't exist")
-  t.done()
-})
+test('sync-read-not-there', async t =>
+  t.throws(() => readCmdShim.sync('/path/to/nowhere'), { code: 'ENOENT' }))
 
-test('async-read-not-shim', function (t) {
-  t.plan(2)
-  readCmdShim(__filename, function (er, dest) {
-    t.ok(er)
-    t.is(er.code, 'ENOTASHIM', 'shim file specified is not a shim')
-    t.done()
-  })
-})
+test('async-read-not-shim', t =>
+  t.rejects(readCmdShim(__filename), {code: 'ENOTASHIM' }))
 
-test('sync-read-not-shim', function (t) {
-  t.plan(1)
-  t.throws(function () { readCmdShim.sync(__filename) }, 'shim file specified is not a shim')
-  t.done()
-})
+test('sync-read-not-shim', async t =>
+  t.throws(() => readCmdShim.sync(__filename), { code: 'ENOTASHIM' }))
 
-test('cleanup', function (t) {
-  rimraf.sync(workDir)
-  t.done()
-})
+test('cleanup', async t => rimraf.sync(workDir))
