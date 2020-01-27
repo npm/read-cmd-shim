@@ -9,6 +9,9 @@
     "tap": "^14.10.6"
   },
   "scripts": {
+    "preversion": "npm t",
+    "postversion": "npm publish",
+    "prepublishOnly": "git push --follow-tags",
     "test": "tap"
   },
   "tap": {
