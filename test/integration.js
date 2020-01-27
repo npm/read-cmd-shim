@@ -17,13 +17,10 @@ test('setup', function (t) {
   rimraf.sync(workDir)
   fs.mkdirSync(workDir)
   fs.writeFileSync(testShbang + '.js', '#!/usr/bin/env node\ntrue')
-  cmdShim(__filename, testShim, function (er) {
-    t.error(er)
-    cmdShim(testShbang + '.js', testShbang, function (er) {
-      t.error(er)
-      t.done()
-    })
-  })
+  return Promise.all([
+    cmdShim(__filename, testShim),
+    cmdShim(testShbang + '.js', testShbang),
+  ])
 })
 
 test('async-read-no-shbang', function (t) {
