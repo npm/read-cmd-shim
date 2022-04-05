@@ -1,10 +1,10 @@
 'use strict'
-const {join, basename} = require('path')
+const { join, basename } = require('path')
 const fs = require('graceful-fs')
 const test = require('tap').test
 const rimraf = require('rimraf')
 const cmdShim = require('cmd-shim')
-const readCmdShim = require('../index.js')
+const readCmdShim = require('..')
 const workDir = join(__dirname, basename(__filename, '.js'))
 const testShbang = join(workDir, 'test-shbang')
 const testShbangCmd = testShbang + '.cmd'
@@ -66,13 +66,13 @@ test('sync-read-dir', async t =>
   t.throws(() => readCmdShim.sync(workDir), { code: 'EISDIR' }))
 
 test('async-read-not-there', t =>
-  t.rejects(readCmdShim('/path/to/nowhere'), {code: 'ENOENT'}))
+  t.rejects(readCmdShim('/path/to/nowhere'), { code: 'ENOENT' }))
 
 test('sync-read-not-there', async t =>
   t.throws(() => readCmdShim.sync('/path/to/nowhere'), { code: 'ENOENT' }))
 
 test('async-read-not-shim', t =>
-  t.rejects(readCmdShim(__filename), {code: 'ENOTASHIM' }))
+  t.rejects(readCmdShim(__filename), { code: 'ENOTASHIM' }))
 
 test('sync-read-not-shim', async t =>
   t.throws(() => readCmdShim.sync(__filename), { code: 'ENOTASHIM' }))
