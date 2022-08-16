@@ -1,6 +1,6 @@
 'use strict'
 const { join, basename } = require('path')
-const fs = require('graceful-fs')
+const fs = require('fs')
 const test = require('tap').test
 const rimraf = require('rimraf')
 const cmdShim = require('cmd-shim')
