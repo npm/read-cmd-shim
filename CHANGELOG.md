@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/npm/read-cmd-shim/compare/v3.0.0...v3.0.1) (2022-08-16)
+
+
+### Bug Fixes
+
+* linting ([#24](https://github.com/npm/read-cmd-shim/issues/24)) ([fa07e9b](https://github.com/npm/read-cmd-shim/commit/fa07e9b5682d762d8f0b2d9c22ab0f36d198f389))
+
 ## [3.0.0](https://github.com/npm/read-cmd-shim/compare/v2.0.0...v3.0.0) (2022-04-05)
 
 
