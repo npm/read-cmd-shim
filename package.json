@@ -11,9 +11,6 @@
     "tap": "^16.0.1"
   },
   "scripts": {
-    "preversion": "npm test",
-    "postversion": "npm publish",
-    "prepublishOnly": "git push origin --follow-tags",
     "test": "tap",
     "lint": "eslint \"**/*.js\"",
     "postlint": "template-oss-check",
@@ -23,7 +20,11 @@
     "posttest": "npm run lint"
   },
   "tap": {
-    "check-coverage": true
+    "check-coverage": true,
+    "nyc-arg": [
+      "--exclude",
+      "tap-snapshots/**"
+    ]
   },
   "repository": {
     "type": "git",
@@ -37,10 +38,10 @@
   ],
   "author": "GitHub Inc.",
   "engines": {
-    "node": "^12.13.0 || ^14.15.0 || >=16.0.0"
+    "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
   },
   "templateOSS": {
     "//@npmcli/template-oss": "This file is partially managed by @npmcli/template-oss. Edits may be overwritten.",
-    "version": "3.6.0"
+    "version": "4.3.2"
   }
 }
