@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.0.0](https://github.com/npm/read-cmd-shim/compare/v3.0.1...v4.0.0) (2022-10-10)
+
+### ⚠️ BREAKING CHANGES
+
+* `read-cmd-shim` is now compatible with the following semver range for node: `^14.17.0 || ^16.13.0 || >=18.0.0`
+
+### Features
+
+* [`8a9dfed`](https://github.com/npm/read-cmd-shim/commit/8a9dfedaed52eea1857198edb6586e52a0a6af6e) [#35](https://github.com/npm/read-cmd-shim/pull/35) postinstall for dependabot template-oss PR (@lukekarrys)
+
 ## [3.0.1](https://github.com/npm/read-cmd-shim/compare/v3.0.0...v3.0.1) (2022-08-16)
 
 
