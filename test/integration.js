@@ -2,7 +2,6 @@
 const { join, basename } = require('path')
 const fs = require('fs')
 const test = require('tap').test
-const rimraf = require('rimraf')
 const cmdShim = require('cmd-shim')
 const readCmdShim = require('..')
 const workDir = join(__dirname, basename(__filename, '.js'))
@@ -14,7 +13,7 @@ const testShimCmd = testShim + '.cmd'
 const testShimPowershell = testShim + '.ps1'
 
 test('setup', t => {
-  rimraf.sync(workDir)
+  fs.rmSync(workDir, { recursive: true, force: true })
   fs.mkdirSync(workDir)
   fs.writeFileSync(testShbang + '.js', '#!/usr/bin/env node\ntrue')
   return Promise.all([
@@ -77,4 +76,4 @@ test('async-read-not-shim', t =>
 test('sync-read-not-shim', async t =>
   t.throws(() => readCmdShim.sync(__filename), { code: 'ENOTASHIM' }))
 
-test('cleanup', async t => rimraf.sync(workDir))
+test('cleanup', async t => fs.rmSync(workDir, { recursive: true, force: true }))
