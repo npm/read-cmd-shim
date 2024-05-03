@@ -12,7 +12,7 @@ const testShim = join(workDir, 'test')
 const testShimCmd = testShim + '.cmd'
 const testShimPowershell = testShim + '.ps1'
 
-test('setup', t => {
+test('setup', () => {
   fs.rmSync(workDir, { recursive: true, force: true })
   fs.mkdirSync(workDir)
   fs.writeFileSync(testShbang + '.js', '#!/usr/bin/env node\ntrue')
@@ -76,4 +76,4 @@ test('async-read-not-shim', t =>
 test('sync-read-not-shim', async t =>
   t.throws(() => readCmdShim.sync(__filename), { code: 'ENOTASHIM' }))
 
-test('cleanup', async t => fs.rmSync(workDir, { recursive: true, force: true }))
+test('cleanup', async () => fs.rmSync(workDir, { recursive: true, force: true }))
