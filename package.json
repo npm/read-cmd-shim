@@ -6,7 +6,7 @@
   "devDependencies": {
     "@npmcli/eslint-config": "^5.0.0",
     "@npmcli/template-oss": "4.23.3",
-    "cmd-shim": "^6.0.0",
+    "cmd-shim": "^7.0.0",
     "tap": "^16.0.1"
   },
   "scripts": {
