@@ -4,7 +4,7 @@
   "description": "Figure out what a cmd-shim is pointing at. This acts as the equivalent of fs.readlink.",
   "main": "lib/index.js",
   "devDependencies": {
-    "@npmcli/eslint-config": "^4.0.0",
+    "@npmcli/eslint-config": "^5.0.0",
     "@npmcli/template-oss": "4.23.3",
     "cmd-shim": "^6.0.0",
     "tap": "^16.0.1"
