@@ -1,5 +1,15 @@
 # Changelog
 
+## [6.0.0](https://github.com/npm/read-cmd-shim/compare/v5.0.0...v6.0.0) (2025-10-23)
+### ⚠️ BREAKING CHANGES
+* `read-cmd-shim` now supports node `^20.17.0 || >=22.9.0`
+### Bug Fixes
+* [`064b3bf`](https://github.com/npm/read-cmd-shim/commit/064b3bf83eff81ee36b9a0e295c213d201699fa5) [#120](https://github.com/npm/read-cmd-shim/pull/120) align to npm 11 node engine range (@owlstronaut)
+### Chores
+* [`c4fe37a`](https://github.com/npm/read-cmd-shim/commit/c4fe37a2e678c38fdd17feb48bdaa5d08f0a2741) [#120](https://github.com/npm/read-cmd-shim/pull/120) template-oss-apply (@owlstronaut)
+* [`25e6268`](https://github.com/npm/read-cmd-shim/commit/25e62689a4cdc01f933310bd4e7851e703e5348a) [#112](https://github.com/npm/read-cmd-shim/pull/112) postinstall workflow updates (#112) (@owlstronaut)
+* [`7d81af6`](https://github.com/npm/read-cmd-shim/commit/7d81af6a805c832df74a37c0645b3eff39f88053) [#117](https://github.com/npm/read-cmd-shim/pull/117) bump @npmcli/template-oss from 4.26.0 to 4.27.1 (#117) (@dependabot[bot], @npm-cli-bot)
+
 ## [5.0.0](https://github.com/npm/read-cmd-shim/compare/v4.0.0...v5.0.0) (2024-09-24)
 ### ⚠️ BREAKING CHANGES
 * `read-cmd-shim` now supports node `^18.17.0 || >=20.5.0`
