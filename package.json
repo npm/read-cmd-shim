@@ -6,8 +6,7 @@
   "devDependencies": {
     "@npmcli/eslint-config": "^6.0.0",
     "@npmcli/template-oss": "4.28.1",
-    "cmd-shim": "^8.0.0",
-    "tap": "^16.0.1"
+    "cmd-shim": "^8.0.0"
   },
   "scripts": {
     "test": "node --test './test/**/*.js'",
