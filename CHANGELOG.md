@@ -1,5 +1,20 @@
 # Changelog
 
+## [7.0.0](https://github.com/npm/read-cmd-shim/compare/v6.0.0...v7.0.0) (2026-05-08)
+### ⚠️ BREAKING CHANGES
+* `read-cmd-shim` now supports node `^22.22.2 || ^24.15.0 || >=26.0.0`
+* template-oss-apply
+### Features
+* [`6f98827`](https://github.com/npm/read-cmd-shim/commit/6f98827fc0ba7f3139683d1c390e686bc0a85318) [#131](https://github.com/npm/read-cmd-shim/pull/131) bump to new node engine range (@owlstronaut)
+* [`0459087`](https://github.com/npm/read-cmd-shim/commit/04590871ec31394f0f092e339506d158f7cfeafb) [#131](https://github.com/npm/read-cmd-shim/pull/131) template-oss-apply (@owlstronaut)
+### Chores
+* [`b4fe02b`](https://github.com/npm/read-cmd-shim/commit/b4fe02bed567afb9b0cad028df5b8e5546eaafb5) [#131](https://github.com/npm/read-cmd-shim/pull/131) template-oss-apply (@owlstronaut)
+* [`5358d29`](https://github.com/npm/read-cmd-shim/commit/5358d2988ee7d0196ae8e95922c136e137d7418e) [#125](https://github.com/npm/read-cmd-shim/pull/125) remove tap (@owlstronaut)
+* [`e668c96`](https://github.com/npm/read-cmd-shim/commit/e668c967f8b3839631f6f57be2345d5e7a22c1de) [#125](https://github.com/npm/read-cmd-shim/pull/125) swap from tap to built-in node:test (@owlstronaut)
+* [`84f4d8b`](https://github.com/npm/read-cmd-shim/commit/84f4d8b3a1e7bf9d74aaa8c5ce0316ffc2f67f56) [#122](https://github.com/npm/read-cmd-shim/pull/122) bump @npmcli/eslint-config from 5.1.0 to 6.0.0 (#122) (@dependabot[bot])
+* [`40e34f7`](https://github.com/npm/read-cmd-shim/commit/40e34f7ad61d664bda29f9c500fd2b992a48e00c) [#119](https://github.com/npm/read-cmd-shim/pull/119) bump cmd-shim from 7.0.0 to 8.0.0 (#119) (@dependabot[bot])
+* [`1ddf5b5`](https://github.com/npm/read-cmd-shim/commit/1ddf5b580c3ed75c7475e9b74c7de3fd6dbc2f38) [#129](https://github.com/npm/read-cmd-shim/pull/129) bump @npmcli/template-oss from 4.29.0 to 4.30.0 (#129) (@dependabot[bot], @npm-cli-bot)
+
 ## [6.0.0](https://github.com/npm/read-cmd-shim/compare/v5.0.0...v6.0.0) (2025-10-23)
 ### ⚠️ BREAKING CHANGES
 * `read-cmd-shim` now supports node `^20.17.0 || >=22.9.0`
