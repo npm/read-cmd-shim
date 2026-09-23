@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.0.1](https://github.com/npm/read-cmd-shim/compare/v7.0.0...v7.0.1) (2026-09-23)
+### Bug Fixes
+* [`2803819`](https://github.com/npm/read-cmd-shim/commit/28038192d2ca2779535a4d0cdddda864aad75b70) [#137](https://github.com/npm/read-cmd-shim/pull/137) read updated shell shim paths (#137) (@martinrrm)
+### Chores
+* [`2d4e4ff`](https://github.com/npm/read-cmd-shim/commit/2d4e4ff71257909d3c7db0ec7e0f1eb5884e55bd) [#135](https://github.com/npm/read-cmd-shim/pull/135) bump @npmcli/eslint-config from 6.0.1 to 7.0.0 (#135) (@dependabot[bot])
+* [`73943b8`](https://github.com/npm/read-cmd-shim/commit/73943b82d278af41f99c27f8e0002c3bc00e3b1a) [#133](https://github.com/npm/read-cmd-shim/pull/133) bump cmd-shim from 8.0.0 to 9.0.0 (@dependabot[bot])
+* [`57c1740`](https://github.com/npm/read-cmd-shim/commit/57c1740c1725646ad540e46ac9e393892a34bff0) [#136](https://github.com/npm/read-cmd-shim/pull/136) bump @npmcli/template-oss from 5.1.0 to 5.1.1 (#136) (@dependabot[bot], @npm-cli-bot)
+* [`08dde45`](https://github.com/npm/read-cmd-shim/commit/08dde4562a17fa3c31186f51818d6b570afeaae8) [#134](https://github.com/npm/read-cmd-shim/pull/134) postinstall for dependabot template-oss PR (@npm-cli-bot)
+
 ## [7.0.0](https://github.com/npm/read-cmd-shim/compare/v6.0.0...v7.0.0) (2026-05-08)
 ### ⚠️ BREAKING CHANGES
 * `read-cmd-shim` now supports node `^22.22.2 || ^24.15.0 || >=26.0.0`
