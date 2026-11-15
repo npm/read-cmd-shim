@@ -12,16 +12,34 @@ const testShbangPowershell = testShbang + '.ps1'
 const testShim = join(workDir, 'test')
 const testShimCmd = testShim + '.cmd'
 const testShimPowershell = testShim + '.ps1'
+const testCaseShim = join(workDir, 'test-case')
 
 before(async () => {
   fs.rmSync(workDir, { recursive: true, force: true })
   fs.mkdirSync(workDir)
   fs.writeFileSync(testShbang + '.js', '#!/usr/bin/env node\ntrue')
+  const mixedCaseTarget = join(workDir, 'MixedCase.js')
+  fs.writeFileSync(mixedCaseTarget, '#!/usr/bin/env node\ntrue')
   await Promise.all([
     cmdShim(__filename, testShim),
     cmdShim(testShbang + '.js', testShbang),
+    cmdShim(mixedCaseTarget, testCaseShim),
   ])
 })
+
+for (const [index, extension] of ['CMD', 'CmD', 'PS1', 'Ps1'].entries()) {
+  test(`async-read-${extension}`, async () => {
+    const shim = join(workDir, `async-${index}.${extension}`)
+    fs.copyFileSync(`${testCaseShim}.${extension.toLowerCase()}`, shim)
+    assert.strictEqual(await readCmdShim(shim), 'MixedCase.js')
+  })
+
+  test(`sync-read-${extension}`, () => {
+    const shim = join(workDir, `sync-${index}.${extension}`)
+    fs.copyFileSync(`${testCaseShim}.${extension.toLowerCase()}`, shim)
+    assert.strictEqual(readCmdShim.sync(shim), 'MixedCase.js')
+  })
+}
 
 test('async-read-no-shebang', async () => {
   assert.strictEqual(await readCmdShim(testShimCmd), '..\\integration.js')
